@@ -1,0 +1,58 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
+    <title>Portfolio</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 class="mt-5">Portfolio</h1>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="first_name">Adı</label>
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Soyadı</label>
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                <label for="birthplace">Doğulduğu yer</label>
+                {{ form.birthplace|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                <label for="residence">Yaşadığı yer</label>
+                {{ form.residence|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <label for="age">Yaşı</label>
+                    {{ form.age|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <label for="university">Universiteti</label>
+                    {{ form.university|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <label for="hobbies">Hobbyləri</label>
+                    {{ form.hobbies|as_crispy_field }}
+                </div>
+                <button type="submit" class="btn btn-primary">Əlavə et</button>
+            </form>
+        </div>
+    
+        <div>
+            <h1 class="mt-5">Home</h1>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+</div>
+</body>
+</html>

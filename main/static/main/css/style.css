@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-align: none;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+input{
+    border-radius: 5px;
+    /* margin-right: 500px; */
+}

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Profile(models.Model):
@@ -9,8 +10,11 @@ class Profile(models.Model):
     residence = models.CharField(max_length=100)
     age = models.CharField(max_length=3)
     university = models.TextField()
-    specialty = models.CharField(max_length=100)  # Bu sahəni əlavə edin
+    specialty = models.CharField(max_length=100)
     hobbies = models.TextField()
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+
+

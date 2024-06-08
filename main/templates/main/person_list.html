@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person List</title>
+</head>
+<body>
+    <h1>Person List</h1>
+    <ul>
+        {% for list in lists %}     
+            <li>{{ list.first_name }} <a href="{% url 'detail' list.id %}">PDF yüklə</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

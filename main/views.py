@@ -1,9 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .forms import ProfileForm
 from .models import Profile
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import LoginForm,RegisterForm
+from django.template import loader
+import pdfkit
+
+
+path_wkthmltopdf = 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+
+config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+
 
 # def home_view(request):
 #return render(request, 'home.html')
@@ -33,7 +41,7 @@ def login_view(request):
                 messages.success(request, 'Giriş edildi')
                 return redirect('/')
             else:
-                messages.error(request, 'Invalid credentials')
+                messages.error(request, 'Belə bir istifadəçi yoxdur')
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -58,3 +66,20 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Hesabdan çıxış edildi')
     return redirect('/')
+
+def list_view(request):
+    lists=Profile.objects.all()
+    return render (request,'main/person_list.html',{'lists':lists})
+
+
+def detail_view(request, id):
+    user_profile = Profile.objects.get(id=id)
+    template = loader.get_template("main/resume.html")
+    html = template.render({"user_profile": user_profile})
+    options = {"page-size": "Letter","encoding": "UTF-8"}
+    pdf = pdfkit.from_string(html, False, options,configuration=config)
+    response = HttpResponse(pdf, content_type="application/pdf")
+    response['Content-Disposition'] = f'attachment; filename="download.pdf"'
+    return response
+
+

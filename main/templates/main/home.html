@@ -46,13 +46,16 @@
                 <button type="submit" class="btn btn-primary">Əlavə et</button>
             </form>
         </div>
+        
     
         <div>
             <h1 class="mt-5">Home</h1>
-            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-            <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-            <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+            <a href="{% url 'login' %}" class="btn btn-primary">Giriş</a>
+            <a href="{% url 'register' %}" class="btn btn-primary">Qeydiyyat</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Çıxış</a>
         </div>
+
+        <a href="{% url 'list' %}">Bütün istifadəçilər</a>
 </div>
 </body>
 </html>
